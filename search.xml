@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>SpringSecurity学习笔记</title>
+      <link href="/2021/10/10/springsecurity-xue-xi-bi-ji/"/>
+      <url>/2021/10/10/springsecurity-xue-xi-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h1><pre><code>    &lt;dependency&gt;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;        &lt;/dependency&gt;        &lt;dependency&gt;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;        &lt;/dependency&gt;        &lt;dependency&gt;            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;            &lt;artifactId&gt;lombok&lt;/artifactId&gt;            &lt;optional&gt;true&lt;/optional&gt;        &lt;/dependency&gt;        &lt;dependency&gt;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;            &lt;scope&gt;test&lt;/scope&gt;        &lt;/dependency&gt;        &lt;dependency&gt;            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;            &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;            &lt;scope&gt;test&lt;/scope&gt;        &lt;/dependency&gt;        &lt;dependency&gt;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;        &lt;/dependency&gt;        &lt;dependency&gt;            &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;            &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;            &lt;version&gt;RELEASE&lt;/version&gt;            &lt;scope&gt;test&lt;/scope&gt;        &lt;/dependency&gt;</code></pre><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Markdown </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringSecurity </tag>
+            
+            <tag> 安全框架 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>添加博客记录</title>
+      <link href="/2021/10/09/tian-jia-bo-ke-ji-lu/"/>
+      <url>/2021/10/09/tian-jia-bo-ke-ji-lu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="cc-showMessage"><a href="#cc-showMessage" class="headerlink" title="cc_showMessage"></a>cc_showMessage</h1><p> 创建博客文件指令 hexo n 博客名称</p><h2 id="这是一个二级标题"><a href="#这是一个二级标题" class="headerlink" title="这是一个二级标题"></a>这是一个二级标题</h2><p> 几级标题看多少个#号</p><h3 id="这是个三级标题哦"><a href="#这是个三级标题哦" class="headerlink" title="这是个三级标题哦"></a>这是个三级标题哦</h3><ul><li>列表1</li><li>列表2</li><li>列表三<br><a href="https://www.baidu.com/">百度导航</a><h4 id="图片插入"><a href="#图片插入" class="headerlink" title="图片插入"></a>图片插入</h4><img src="https://w.wallhaven.cc/full/72/wallhaven-72rkyv.jpg" alt="图片插入"></li></ul><hr><hr><h3 id="字体编辑"><a href="#字体编辑" class="headerlink" title="字体编辑"></a>字体编辑</h3><p><em>字体是斜线的</em><br><strong>字体加粗</strong></p><h3 id="插入代码"><a href="#插入代码" class="headerlink" title="插入代码"></a>插入代码</h3><p><code>&lt;html&gt;&lt;/html&gt;</code></p><h3 id="多行代码插入"><a href="#多行代码插入" class="headerlink" title="多行代码插入"></a>多行代码插入</h3><pre><code>&lt;html&gt;    &lt;a&gt;        这是一个代码块    &lt;/a&gt;&lt;/html&gt;</code></pre><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote><p>这是一个引用</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 导航 </tag>
+            
+            <tag> 分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>我的第一篇博客</title>
+      <link href="/2021/10/09/wo-de-di-yi-pian-bo-ke/"/>
+      <url>/2021/10/09/wo-de-di-yi-pian-bo-ke/</url>
+      
+        <content type="html"><![CDATA[<p>简介<br>这是我的第一篇hexo博客。学习从这一刻开始。<br>第一天搭建学习内容<br>hexo s :启动服务器<br>hexo clean ：清理之前缓存<br>hexo g :加载静态内容<br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s ：可以直接运行这个程序<br>主体的配置主要是在theme的配置文件中<br>hexo d ：上传本地文件到github上<br>hexo n  博客名:创建博客</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 博客搭建记录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
