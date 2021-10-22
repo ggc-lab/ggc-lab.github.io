@@ -6,7 +6,7 @@
   <link href="http://cc_showmessage.com/atom.xml" rel="self"/>
   
   <link href="http://cc_showmessage.com/"/>
-  <updated>2021-10-22T07:37:08.918Z</updated>
+  <updated>2021-10-22T11:53:40.138Z</updated>
   <id>http://cc_showmessage.com/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>linux学习笔记</title>
+    <link href="http://cc_showmessage.com/2021/10/22/linux-xue-xi-bi-ji/"/>
+    <id>http://cc_showmessage.com/2021/10/22/linux-xue-xi-bi-ji/</id>
+    <published>2021-10-22T11:52:33.000Z</published>
+    <updated>2021-10-22T11:53:40.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;linux&quot;&gt;&lt;a href=&quot;#linux&quot; class=&quot;headerlink&quot; title=&quot;linux&quot;&gt;&lt;/a&gt;linux&lt;/h1&gt;&lt;h2 id=&quot;1-关机操作&quot;&gt;&lt;a href=&quot;#1-关机操作&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown" scheme="http://cc_showmessage.com/categories/Markdown/"/>
+    
+    
+    <category term="Linux" scheme="http://cc_showmessage.com/tags/Linux/"/>
+    
+    <category term="指令" scheme="http://cc_showmessage.com/tags/%E6%8C%87%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>renren-generator逆向工程学习</title>
+    <link href="http://cc_showmessage.com/2021/10/22/renren-generator-ni-xiang-gong-cheng-xue-xi/"/>
+    <id>http://cc_showmessage.com/2021/10/22/renren-generator-ni-xiang-gong-cheng-xue-xi/</id>
+    <published>2021-10-22T08:30:11.000Z</published>
+    <updated>2021-10-22T08:33:18.170Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;源码地址&quot;&gt;&lt;a href=&quot;#源码地址&quot; class=&quot;headerlink&quot; title=&quot;源码地址&quot;&gt;&lt;/a&gt;源码地址&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown" scheme="http://cc_showmessage.com/categories/Markdown/"/>
+    
+    
+    <category term="逆向工程" scheme="http://cc_showmessage.com/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+    
+    <category term="开发工具" scheme="http://cc_showmessage.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>redis学习笔记</title>
     <link href="http://cc_showmessage.com/2021/10/22/redis-xue-xi-bi-ji/"/>
     <id>http://cc_showmessage.com/2021/10/22/redis-xue-xi-bi-ji/</id>
     <published>2021-10-22T06:59:37.000Z</published>
-    <updated>2021-10-22T07:37:08.918Z</updated>
+    <updated>2021-10-22T08:32:49.042Z</updated>
     
     
       
