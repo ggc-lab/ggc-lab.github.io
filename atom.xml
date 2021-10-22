@@ -6,7 +6,7 @@
   <link href="http://cc_showmessage.com/atom.xml" rel="self"/>
   
   <link href="http://cc_showmessage.com/"/>
-  <updated>2021-10-10T11:00:14.080Z</updated>
+  <updated>2021-10-22T07:37:08.918Z</updated>
   <id>http://cc_showmessage.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>redis学习笔记</title>
+    <link href="http://cc_showmessage.com/2021/10/22/redis-xue-xi-bi-ji/"/>
+    <id>http://cc_showmessage.com/2021/10/22/redis-xue-xi-bi-ji/</id>
+    <published>2021-10-22T06:59:37.000Z</published>
+    <updated>2021-10-22T07:37:08.918Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-为什么要用Nosql&quot;&gt;&lt;a href=&quot;#1-为什么要用Nosql&quot; class=&quot;headerlink&quot; title=&quot;1.为什么要用Nosql&quot;&gt;&lt;/a&gt;1.为什么要用Nosql&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Markdown" scheme="http://cc_showmessage.com/categories/Markdown/"/>
+    
+    
+    <category term="Redis学习" scheme="http://cc_showmessage.com/tags/Redis%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="缓存机制" scheme="http://cc_showmessage.com/tags/%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
+    
+    <category term="NoSql" scheme="http://cc_showmessage.com/tags/NoSql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SpringSecurity学习笔记</title>
     <link href="http://cc_showmessage.com/2021/10/10/springsecurity-xue-xi-bi-ji/"/>
     <id>http://cc_showmessage.com/2021/10/10/springsecurity-xue-xi-bi-ji/</id>
     <published>2021-10-10T06:53:55.000Z</published>
-    <updated>2021-10-10T11:00:14.080Z</updated>
+    <updated>2021-10-22T07:03:59.862Z</updated>
     
     
       
