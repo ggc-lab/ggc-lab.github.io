@@ -31,8 +31,8 @@
 
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="cc_showMessage的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="cc_showMessage的博客" type="application/atom+xml">
+</head>
 
 
 
@@ -587,7 +587,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-22
+                    2021-10-29
                 </div>
                 
 
@@ -628,29 +628,29 @@
 <li>Eclipse、IDEA运行RenrenApplication.java，则可启动项目</li>
 <li>项目访问路径：<a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a><h1 id="修改源码里的application数据库地址"><a href="#修改源码里的application数据库地址" class="headerlink" title="修改源码里的application数据库地址"></a>修改源码里的application数据库地址</h1></li>
 </ul>
-<pre><code>spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
+<pre class=" language-java"><code class="language-java">spring<span class="token operator">:</span>
+  datasource<span class="token operator">:</span>
+    type<span class="token operator">:</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>pool<span class="token punctuation">.</span>DruidDataSource
     #MySQL配置
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://101.35.103.140/gulimall_oms?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false
-    username: root
-    password: root
+    driverClassName<span class="token operator">:</span> com<span class="token punctuation">.</span>mysql<span class="token punctuation">.</span>jdbc<span class="token punctuation">.</span>Driver
+    url<span class="token operator">:</span> jdbc<span class="token operator">:</span>mysql<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">101.35</span><span class="token punctuation">.</span><span class="token number">103.140</span><span class="token operator">/</span>gulimall_oms<span class="token operator">?</span>useUnicode<span class="token operator">=</span><span class="token boolean">true</span><span class="token operator">&amp;</span>characterEncoding<span class="token operator">=</span>UTF<span class="token operator">-</span><span class="token number">8</span><span class="token operator">&amp;</span>useSSL<span class="token operator">=</span><span class="token boolean">false</span>
+    username<span class="token operator">:</span> root
+    password<span class="token operator">:</span> root
 </code></pre>
-<h1 id="修改源码里的generator-properties文件"><a href="#修改源码里的generator-properties文件" class="headerlink" title="修改源码里的generator.properties文件"></a>修改源码里的generator.properties文件</h1><pre><code>#项目工程名
-mainPath=com.atguigu
+<h1 id="修改源码里的generator-properties文件"><a href="#修改源码里的generator-properties文件" class="headerlink" title="修改源码里的generator.properties文件"></a>修改源码里的generator.properties文件</h1><pre class=" language-java"><code class="language-java">#项目工程名
+mainPath<span class="token operator">=</span>com<span class="token punctuation">.</span>atguigu
 #项目包名
-package=com.atguigu.gulimall
+<span class="token keyword">package</span><span class="token operator">=</span>com<span class="token punctuation">.</span>atguigu<span class="token punctuation">.</span>gulimall
 #模块名
-moduleName=order
+moduleName<span class="token operator">=</span>order
 #\u4F5C\u8005
 #作者
-author=ggc
+author<span class="token operator">=</span>ggc
 #Email
-email=ggc
-#\u8868\u524D\u7F00(\u7C7B\u540D\u4E0D\u4F1A\u5305\u542B\u8868\u524D\u7F00)
+email<span class="token operator">=</span>ggc
+#\u8868\u524D\<span class="token function">u7F00</span><span class="token punctuation">(</span>\u7C7B\u540D\u4E0D\u4F1A\u5305\u542B\u8868\u524D\u7F00<span class="token punctuation">)</span>
 #数据库表前缀
-tablePrefix=oms_
+tablePrefix<span class="token operator">=</span>oms_
 </code></pre>
 
                 
@@ -897,19 +897,19 @@ tablePrefix=oms_
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/22/linux-xue-xi-bi-ji/">
+                <a href="/2021/10/22/mysql-xue-xi-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="linux学习笔记">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MySQL 学习总结">
                         
-                        <span class="card-title">linux学习笔记</span>
+                        <span class="card-title">MySQL 学习总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            linux学习
+                            MySQL
                         
                     </div>
                     <div class="publish-info">
@@ -920,8 +920,8 @@ tablePrefix=oms_
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Markdown/" class="post-category">
-                                    Markdown
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
@@ -931,12 +931,12 @@ tablePrefix=oms_
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
-                    <a href="/tags/%E6%8C%87%E4%BB%A4/">
-                        <span class="chip bg-color">指令</span>
+                    <a href="/tags/%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">总结</span>
                     </a>
                     
                 </div>
@@ -1189,7 +1189,7 @@ tablePrefix=oms_
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2021-2022</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">cc</a>
@@ -1198,7 +1198,7 @@ tablePrefix=oms_
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.4k</span>
+                        class="white-color">20.9k</span>
             
             
             

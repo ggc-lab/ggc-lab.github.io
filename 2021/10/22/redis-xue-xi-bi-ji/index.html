@@ -31,8 +31,8 @@
 
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="cc_showMessage的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="cc_showMessage的博客" type="application/atom+xml">
+</head>
 
 
 
@@ -591,21 +591,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-22
+                    2021-10-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    12k
+                    11.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    50 分
+                    49 分
                 </div>
                 
 
@@ -687,22 +687,22 @@
 <p>1、多样的数据类型<br>2、持久化<br>3、集群<br>4、事务<br>…</p>
 <p>官网：<a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a><br>中文网：<a target="_blank" rel="noopener" href="http://www.redis.cn/">http://www.redis.cn/</a></p>
 <h2 id="2-2-基本环境搭建"><a href="#2-2-基本环境搭建" class="headerlink" title="2.2 基本环境搭建"></a>2.2 基本环境搭建</h2><p>1.下载linux安装包，本文下载的为5.0.12（6.0以上的需要升级gcc，太费劲）<br>2.将redis-5.0.12.tar.gz，传输到opt目录（当然了，不喜欢opt目录其它目录也可以）<br>3.解压 tar -zxvf redis-5.0.12.tar.gz</p>
-<pre><code>tar -zxvf redis-5.0.12.tar.gz
+<pre class=" language-java"><code class="language-java">tar <span class="token operator">-</span>zxvf redis<span class="token operator">-</span><span class="token number">5.0</span><span class="token punctuation">.</span><span class="token number">12</span><span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz
 </code></pre>
 <p>4.安装gcc</p>
-<pre><code>yum -y install gcc gcc-c++
-yum install gcc-c++ tcl
+<pre class=" language-java"><code class="language-java">yum <span class="token operator">-</span>y install gcc gcc<span class="token operator">-</span>c<span class="token operator">++</span>
+yum install gcc<span class="token operator">-</span>c<span class="token operator">++</span> tcl
 </code></pre>
 <p>5.进入到redis解压下的目录，执行make</p>
-<pre><code>cd /opt/redis-5.0.12
+<pre class=" language-java"><code class="language-java">cd <span class="token operator">/</span>opt<span class="token operator">/</span>redis<span class="token operator">-</span><span class="token number">5.0</span><span class="token punctuation">.</span><span class="token number">12</span>
 make
 </code></pre>
 <ol start="6">
 <li>进入到redis默认安装路径：/usr/local/bin下，查看是否安装完成<br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210323200949703.png" alt="image"></li>
 <li>创建文件夹，用来保存redis的配置文件，并将解压包内的redis.conf，拷贝一份，后续按照拷贝后的文件进行启动</li>
 </ol>
-<pre><code>mkdir /usr/local/bin/redisconfig
-cp cp /opt/redis-5.0.12/redis.conf /usr/local/bin/redisconfig/
+<pre class=" language-java"><code class="language-java">mkdir <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>bin<span class="token operator">/</span>redisconfig
+cp cp <span class="token operator">/</span>opt<span class="token operator">/</span>redis<span class="token operator">-</span><span class="token number">5.0</span><span class="token punctuation">.</span><span class="token number">12</span><span class="token operator">/</span>redis<span class="token punctuation">.</span>conf <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>bin<span class="token operator">/</span>redisconfig<span class="token operator">/</span>
 </code></pre>
 <ol start="8">
 <li><p>更改配置文件，配置后台启动<br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210323201349704.png" alt="image"></p>
@@ -738,117 +738,117 @@ exit
 <p>误区1：高性能的服务器一定是多线程的？<br>误区2：多线程（CPU上下文会切换！）一定比单线程效率高？</p>
 </blockquote>
 <p>核心：&nbsp;redis是将所有的数据全部存放在内存中的，所以说使用单线程去操作效率就是最高的，多线程（CPU会上下文切换：耗时操作！）<br>对于内存系统来说，如果没有上下文切换，<br>效率就是最高的，多次读写都是在一个cpu上的，在内存情况下，这个就是最优的方案！</p>
-<h3 id="2-4-1、redis常用命令"><a href="#2-4-1、redis常用命令" class="headerlink" title="2.4.1、redis常用命令"></a>2.4.1、redis常用命令</h3><pre><code>#1.切换数据库  select index
-select 3
-#2.数据库大小
+<h3 id="2-4-1、redis常用命令"><a href="#2-4-1、redis常用命令" class="headerlink" title="2.4.1、redis常用命令"></a>2.4.1、redis常用命令</h3><pre class=" language-java"><code class="language-java">#<span class="token number">1</span><span class="token punctuation">.</span>切换数据库  select index
+select <span class="token number">3</span>
+#<span class="token number">2</span><span class="token punctuation">.</span>数据库大小
 dbsize
-#3. 查看所有的key
-keys *
-#4. 清空全部
+#<span class="token number">3</span><span class="token punctuation">.</span> 查看所有的key
+keys <span class="token operator">*</span>
+#<span class="token number">4</span><span class="token punctuation">.</span> 清空全部
 flushall
-#5. 清空当前库
+#<span class="token number">5</span><span class="token punctuation">.</span> 清空当前库
 flushdb
-#6.判断某个key是否存在  
+#<span class="token number">6</span><span class="token punctuation">.</span>判断某个key是否存在  
 EXISTS KEY
-#7.移某个key
-move keyName 数据库index  （move name 1）
-#8.设置key过期时间
+#<span class="token number">7</span><span class="token punctuation">.</span>移某个key
+move keyName 数据库index  （move name <span class="token number">1</span>）
+#<span class="token number">8</span><span class="token punctuation">.</span>设置key过期时间
 EXPIRE keyName seconds
-#9.查询有效期还剩多久
+#<span class="token number">9</span><span class="token punctuation">.</span>查询有效期还剩多久
 ttl keyName
-#10.查看key类型
+#<span class="token number">10</span><span class="token punctuation">.</span>查看key类型
 type keyName
 </code></pre>
 <h1 id="3、五大数据类型"><a href="#3、五大数据类型" class="headerlink" title="3、五大数据类型"></a>3、五大数据类型</h1><p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings），<br>散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial）<br>索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的<br>磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。</p>
-<h2 id="3-1、String"><a href="#3-1、String" class="headerlink" title="3.1、String"></a>3.1、String</h2><pre><code>
+<h2 id="3-1、String"><a href="#3-1、String" class="headerlink" title="3.1、String"></a>3.1、String</h2><pre class=" language-java"><code class="language-java">
 ####################################################################
-127.0.0.1:6379&gt; APPEND name aa #追加，如果追加的key不存在，则新建
-(integer) 6
-127.0.0.1:6379&gt; GET name
-"yangaa"
-127.0.0.1:6379&gt; STRLEN name #获取key对应值的长度
-(integer) 6
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> APPEND name aa #追加，如果追加的key不存在，则新建
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">6</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GET name
+<span class="token string">"yangaa"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> STRLEN name #获取key对应值的长度
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">6</span>
 ####################################################################
-127.0.0.1:6379&gt; set views 0 #初始浏览量为0
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set views <span class="token number">0</span> #初始浏览量为<span class="token number">0</span>
 OK
-127.0.0.1:6379&gt; get views
-"0"
-127.0.0.1:6379&gt; INCR views #自+1
-(integer) 1
-127.0.0.1:6379&gt; get views
-"1"
-127.0.0.1:6379&gt; DECR views
-(integer) 0
-127.0.0.1:6379&gt; get views #自-1
-"0"
-127.0.0.1:6379&gt; INCRBY views 10 #自+10
-(integer) 10
-127.0.0.1:6379&gt; get views
-"10"
-127.0.0.1:6379&gt; DECRBY views 5 #自-5
-(integer) 5
-127.0.0.1:6379&gt; get views
-"5"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get views
+<span class="token string">"0"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> INCR views #自<span class="token operator">+</span><span class="token function">1</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get views
+<span class="token string">"1"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> DECR <span class="token function">views</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get views #自<span class="token operator">-</span><span class="token number">1</span>
+<span class="token string">"0"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> INCRBY views <span class="token number">10</span> #自<span class="token operator">+</span><span class="token function">10</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">10</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get views
+<span class="token string">"10"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> DECRBY views <span class="token number">5</span> #自<span class="token operator">-</span><span class="token function">5</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">5</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get views
+<span class="token string">"5"</span>
 ####################################################################
-127.0.0.1:6379&gt; set key1 hello,yang
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set key1 hello<span class="token punctuation">,</span>yang
 OK
-127.0.0.1:6379&gt; get key1
-"hello,yang"
-127.0.0.1:6379&gt; GETRANGE key1 0 3 #截取字符串
-"hell"
-127.0.0.1:6379&gt; GETRANGE key1 0 -1 #截取全部
-"hello,yang"
-127.0.0.1:6379&gt; set key2 abcd
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get key1
+<span class="token string">"hello,yang"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GETRANGE key1 <span class="token number">0</span> <span class="token number">3</span> #截取字符串
+<span class="token string">"hell"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GETRANGE key1 <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span> #截取全部
+<span class="token string">"hello,yang"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set key2 abcd
 OK
-127.0.0.1:6379&gt; SETRANGE key2 1 xx &nbsp;#替换 &nbsp; SETRANGE key offset value
-(integer) 4
-127.0.0.1:6379&gt; get key2
-"axxd"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SETRANGE key2 <span class="token number">1</span> xx <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span>#替换 <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span> SETRANGE key offset <span class="token function">value</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">4</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get key2
+<span class="token string">"axxd"</span>
 ####################################################################
-# setex (set with expire) 设置过期时间
-# setnx (set if not exist) 不存在才设置（在分布式锁中会常常使用）
-27.0.0.1:6379&gt; setex key3 30 "hello" &nbsp;#设置过期时间
+# <span class="token function">setex</span> <span class="token punctuation">(</span>set with expire<span class="token punctuation">)</span> 设置过期时间
+# <span class="token function">setnx</span> <span class="token punctuation">(</span>set <span class="token keyword">if</span> not exist<span class="token punctuation">)</span> 不存在才设置（在分布式锁中会常常使用）
+<span class="token number">27.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setex key3 <span class="token number">30</span> <span class="token string">"hello"</span> <span class="token operator">&amp;</span>nbsp<span class="token punctuation">;</span>#设置过期时间
 OK
-127.0.0.1:6379&gt; ttl key3
-(integer) 24
-127.0.0.1:6379&gt; setnx mykey "redis" #此时mykey不存在才能设置成功
-(integer) 1
-127.0.0.1:6379&gt; keys *
-1) "key1"
-2) "mykey"
-3) "key2"
-127.0.0.1:6379&gt; ttl key3
-(integer) -2
-127.0.0.1:6379&gt; setnx mykey "MongoDB" #此时mykey已存在设置不成功
-(integer) 0
-127.0.0.1:6379&gt; get mykey
-"redis"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ttl <span class="token function">key3</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">24</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setnx mykey <span class="token string">"redis"</span> #此时mykey不存在才能设置成功
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> keys <span class="token operator">*</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"key1"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"mykey"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"key2"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ttl <span class="token function">key3</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token number">2</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setnx mykey <span class="token string">"MongoDB"</span> #此时mykey已存在设置不成功
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get mykey
+<span class="token string">"redis"</span>
 ####################################################################
 #批量set，批量获取，批量不存在set
-127.0.0.1:6379&gt; mset k1 v1 k2 v2
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> mset k1 v1 k2 v2
 OK
-127.0.0.1:6379&gt; mget k1 k2
-1) "v1"
-2) "v2"
-127.0.0.1:6379&gt; MSETNX k1 v2 k3 v3
-(integer) 0
-127.0.0.1:6379&gt; keys *
-1) "k2"
-2) "k1"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> mget k1 k2
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"v1"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"v2"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> MSETNX k1 v2 k3 <span class="token function">v3</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> keys <span class="token operator">*</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"k2"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"k1"</span>
 ####################################################################
-set user:1 {name:zhangsan,age:20} #设置一个user:1 对象
-mset user:1:name zhangsan user:1:age 20
-mget user:1:name user:1:age
+set user<span class="token operator">:</span><span class="token number">1</span> <span class="token punctuation">{</span>name<span class="token operator">:</span>zhangsan<span class="token punctuation">,</span>age<span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">}</span> #设置一个user<span class="token operator">:</span><span class="token number">1</span> 对象
+mset user<span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>name zhangsan user<span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>age <span class="token number">20</span>
+mget user<span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>name user<span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>age
 ####################################################################
 getset #先get然后再set
-127.0.0.1:6379&gt; getset key1 redis #如果不存在则返回nil
-(nil)
-127.0.0.1:6379&gt; get key1
-"redis"
-127.0.0.1:6379&gt; getset key1 mongodb
-"redis"
-127.0.0.1:6379&gt; get key1
-"mongodb"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> getset key1 redis #如果不存在则返回<span class="token function">nil</span>
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get key1
+<span class="token string">"redis"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> getset key1 mongodb
+<span class="token string">"redis"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get key1
+<span class="token string">"mongodb"</span>
 ####################################################################
 
 </code></pre>
@@ -859,66 +859,66 @@ getset #先get然后再set
 <li>粉丝数</li>
 <li>对象缓存存储</li>
 </ul>
-<h2 id="3-2-List"><a href="#3-2-List" class="headerlink" title="3.2 List"></a>3.2 List</h2><pre><code>127.0.0.1:6379&gt; LPUSH list one #将一个值或多个值，插入到列表头部（左）
-(integer) 1
-127.0.0.1:6379&gt; LPUSH list two
-(integer) 2
-127.0.0.1:6379&gt; LPUSH list three
-(integer) 3
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "three"
-2) "two"
-3) "one"
-127.0.0.1:6379&gt; LRANGE list 0 1
-1) "three"
-2) "two"
-127.0.0.1:6379&gt; RPUSH list four #将一个值或多个值，插入到列表尾部（右）
-(integer) 4
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "three"
-2) "two"
-3) "one"
-4) "four"
+<h2 id="3-2-List"><a href="#3-2-List" class="headerlink" title="3.2 List"></a>3.2 List</h2><pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LPUSH list one #将一个值或多个值，插入到列表头部（左）
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LPUSH list <span class="token function">two</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">2</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LPUSH list <span class="token function">three</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"three"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"three"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> RPUSH list four #将一个值或多个值，插入到列表尾部（右）
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">4</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"three"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"four"</span>
 
 ####################################################
 LPOP key 从左侧移除一个值
 RPOP key 从右侧移除一个值
 LREM key count value 从key中移除count个value
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "three"
-2) "two"
-3) "one"
-4) "four"
-127.0.0.1:6379&gt; LPOP list
-"three"
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "two"
-2) "one"
-3) "four"
-127.0.0.1:6379&gt; RPOP list
-"four"
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "two"
-2) "one"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"three"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"four"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LPOP list
+<span class="token string">"three"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"four"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> RPOP list
+<span class="token string">"four"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
 ####################################################
 LINDEX 通过下角标求值
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "two"
-2) "one"
-127.0.0.1:6379&gt; LINDEX list 0
-"two"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LINDEX list <span class="token number">0</span>
+<span class="token string">"two"</span>
 
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "one"
-2) "one"
-3) "two"
-4) "one"
-127.0.0.1:6379&gt; LREM list 1 one #从list中移除1个one
-(integer) 1
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "one"
-2) "two"
-3) "one"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LREM list <span class="token number">1</span> one #从list中移除<span class="token number">1</span>个<span class="token function">one</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"two"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"one"</span>
 
 ####################################################
 LLEN 求list长度
@@ -926,210 +926,210 @@ LTRIM key start end  #截取
 
 ####################################################
 RPOPLPUSH source destaintion #移除列表最后一个元素，将它移至目标key中
-127.0.0.1:6379&gt; RPUSH list "hello1"
-(integer) 1
-127.0.0.1:6379&gt; RPUSH list "hello2"
-(integer) 2
-127.0.0.1:6379&gt; RPUSH list "hello3"
-(integer) 3
-127.0.0.1:6379&gt; RPOPLPUSH list otherlist
-"hello3"
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "hello1"
-2) "hello2"
-127.0.0.1:6379&gt; LRANGE otherlist 0 -1
-1) "hello3"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> RPUSH list <span class="token string">"hello1"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> RPUSH list <span class="token string">"hello2"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">2</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> RPUSH list <span class="token string">"hello3"</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> RPOPLPUSH list otherlist
+<span class="token string">"hello3"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"hello1"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"hello2"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE otherlist <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"hello3"</span>
 ####################################################
 LSET key index value 将列表中指定下标的值替换
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "hello1"
-2) "hello2"
-127.0.0.1:6379&gt; LSET list 0 "aa"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"hello1"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"hello2"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LSET list <span class="token number">0</span> <span class="token string">"aa"</span>
 OK
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "aa"
-2) "hello2"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"aa"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"hello2"</span>
 ####################################################
-LINSERT key before|after pivot value  #指定字符前后插入值
-127.0.0.1:6379&gt; lrange list 0 -1
-1) "hello"
-2) "word"
-127.0.0.1:6379&gt; LINSERT list before word find
-(integer) 3
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "hello"
-2) "find"
-3) "word"
-127.0.0.1:6379&gt; LINSERT list after word yeah
-(integer) 4
-127.0.0.1:6379&gt; LRANGE list 0 -1
-1) "hello"
-2) "find"
-3) "word"
-4) "yeah"
+LINSERT key before<span class="token operator">|</span>after pivot value  #指定字符前后插入值
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> lrange list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"hello"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"word"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LINSERT list before word <span class="token function">find</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"hello"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"find"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"word"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LINSERT list after word <span class="token function">yeah</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">4</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> LRANGE list <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"hello"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"find"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"word"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"yeah"</span>
 
 </code></pre>
 <p>小结：list为双向链表，在两边插入或改动值，效率最高！中间元素，相对来说效率会低一点</p>
-<h2 id="3-3-set"><a href="#3-3-set" class="headerlink" title="3.3 set"></a>3.3 set</h2><pre><code>SADD key [member....]  像set中插入值
+<h2 id="3-3-set"><a href="#3-3-set" class="headerlink" title="3.3 set"></a>3.3 set</h2><pre class=" language-java"><code class="language-java">SADD key <span class="token punctuation">[</span>member<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>  像set中插入值
 SMEMBERS key 查看key中有哪些值
 SISMENBER key value  查看key中是否存在这个值
 
-127.0.0.1:6379&gt; SADD myset hello fine word
-(integer) 3
-127.0.0.1:6379&gt; SMEMBERS myset
-1) "fine"
-2) "word"
-3) "hello"
-127.0.0.1:6379&gt; SISMEMBER myset hello
-(integer) 1
-127.0.0.1:6379&gt; SISMEMBER myset yang
-(integer) 0
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD myset hello fine <span class="token function">word</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SMEMBERS myset
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"fine"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"word"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"hello"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SISMEMBER myset <span class="token function">hello</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SISMEMBER myset <span class="token function">yang</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
 #################################################
 SCARD key 查看set中值的数量
 SREM key value 移除key中某一个值
 
-127.0.0.1:6379&gt; SCARD myset
-(integer) 3
-127.0.0.1:6379&gt; SREM myset word
-(integer) 1
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SCARD <span class="token function">myset</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SREM myset <span class="token function">word</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
 #################################################
 SMOVE key otherkey member  移除指定元素至另一个key中
-127.0.0.1:6379&gt; SMOVE myset myotnerset hello
-(integer) 1
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SMOVE myset myotnerset <span class="token function">hello</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
 #################################################
 SDIFF key1 key2 差集
 SINTER key1 key2 交集
 SUNION key1 key2 并集
 
-127.0.0.1:6379&gt; SADD key1 a
-(integer) 1
-127.0.0.1:6379&gt; SADD key1 b
-(integer) 1
-127.0.0.1:6379&gt; SADD key1 c
-(integer) 1
-127.0.0.1:6379&gt; SADD key2 c
-(integer) 1
-127.0.0.1:6379&gt; SADD key2 d
-(integer) 1
-127.0.0.1:6379&gt; SADD key2 e
-(integer) 1
-127.0.0.1:6379&gt; SDIFF key1 key2
-1) "a"
-2) "b"
-127.0.0.1:6379&gt; SINTER key1 key2
-1) "c"
-127.0.0.1:6379&gt; SUNION key1 key2
-1) "a"
-2) "b"
-3) "c"
-4) "d"
-5) "e"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD key1 <span class="token function">a</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD key1 <span class="token function">b</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD key1 <span class="token function">c</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD key2 <span class="token function">c</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD key2 <span class="token function">d</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SADD key2 <span class="token function">e</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SDIFF key1 key2
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"a"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"b"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SINTER key1 key2
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"c"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> SUNION key1 key2
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"a"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"b"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"c"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"d"</span>
+<span class="token number">5</span><span class="token punctuation">)</span> <span class="token string">"e"</span>
 </code></pre>
-<h2 id="3-4-Hsah"><a href="#3-4-Hsah" class="headerlink" title="3.4 Hsah"></a>3.4 Hsah</h2><pre><code>HSET key filed value #hash存值
+<h2 id="3-4-Hsah"><a href="#3-4-Hsah" class="headerlink" title="3.4 Hsah"></a>3.4 Hsah</h2><pre class=" language-java"><code class="language-java">HSET key filed value #hash存值
 HGET key filed #hash取值
-HMSET key [filed value ...] #批量存
-HGET key [filed...] #批量取
+HMSET key <span class="token punctuation">[</span>filed value <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span> #批量存
+HGET key <span class="token punctuation">[</span>filed<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span> #批量取
 HGETALL key #取全部
-HDEL key [filed...] #删除某一个或某几个
+HDEL key <span class="token punctuation">[</span>filed<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span> #删除某一个或某几个
 HLEN key #获取长度
 HEXISTS key value #获取某个值是否存在
 HKEYS key #获取所有的filed
 HVALS key #获取所有的value
 
 
-127.0.0.1:6379&gt; HSET myhash name yang 
-(integer) 1
-127.0.0.1:6379&gt; HGET myhash name
-"yang"
-127.0.0.1:6379&gt; HMSET myhash name yang1 age 18
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HSET myhash name <span class="token function">yang</span> 
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HGET myhash name
+<span class="token string">"yang"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HMSET myhash name yang1 age <span class="token number">18</span>
 OK
-127.0.0.1:6379&gt; HMGET myhash name age
-1) "yang1"
-2) "18"
-127.0.0.1:6379&gt; HGETALL myhash
-1) "name"
-2) "yang1"
-3) "age"
-4) "18"
-127.0.0.1:6379&gt; HDEL myhash name
-(integer) 1
-127.0.0.1:6379&gt; HLEN myhash
-(integer) 1
-127.0.0.1:6379&gt; HEXISTS myhash age
-(integer) 1
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HMGET myhash name age
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"yang1"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"18"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HGETALL myhash
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"name"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"yang1"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"age"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"18"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HDEL myhash <span class="token function">name</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HLEN <span class="token function">myhash</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> HEXISTS myhash <span class="token function">age</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
 
 
 </code></pre>
-<h2 id="3-5-zset（有序集合）"><a href="#3-5-zset（有序集合）" class="headerlink" title="3.5 zset（有序集合）"></a>3.5 zset（有序集合）</h2><pre><code>127.0.0.1:6379&gt; ZADD myset 100 xiaoming
-(integer) 1
-127.0.0.1:6379&gt; ZADD myset 200 xiaohong
-(integer) 1
-127.0.0.1:6379&gt; ZADD myset 300 xiaowang
-(integer) 1
-127.0.0.1:6379&gt; ZRANGEBYSCORE myset -inf +inf  #显示全部的用户，从小到大
-1) "xiaoming"
-2) "xiaohong"
-3) "xiaowang"
-127.0.0.1:6379&gt; ZRANGEBYSCORE myset -inf +inf withscores #显示全部的用户，从小到大并附带值
-1) "xiaoming"
-2) "100"
-3) "xiaohong"
-4) "200"
-5) "xiaowang"
-6) "300"
-127.0.0.1:6379&gt; ZREVRANGE myset 0 -1  #显示全部的用户，从大到小
-1) "xiaowang"
-2) "xiaohong"
-3) "xiaoming"
-127.0.0.1:6379&gt; ZREVRANGE myset 0 -1 withscores
-1) "xiaowang"
-2) "300"
-3) "xiaohong"
-4) "200"
-5) "xiaoming"
-6) "100"
+<h2 id="3-5-zset（有序集合）"><a href="#3-5-zset（有序集合）" class="headerlink" title="3.5 zset（有序集合）"></a>3.5 zset（有序集合）</h2><pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZADD myset <span class="token number">100</span> <span class="token function">xiaoming</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZADD myset <span class="token number">200</span> <span class="token function">xiaohong</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZADD myset <span class="token number">300</span> <span class="token function">xiaowang</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZRANGEBYSCORE myset <span class="token operator">-</span>inf <span class="token operator">+</span>inf  #显示全部的用户，从小到大
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaoming"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"xiaohong"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"xiaowang"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZRANGEBYSCORE myset <span class="token operator">-</span>inf <span class="token operator">+</span>inf withscores #显示全部的用户，从小到大并附带值
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaoming"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"100"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"xiaohong"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"200"</span>
+<span class="token number">5</span><span class="token punctuation">)</span> <span class="token string">"xiaowang"</span>
+<span class="token number">6</span><span class="token punctuation">)</span> <span class="token string">"300"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZREVRANGE myset <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>  #显示全部的用户，从大到小
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaowang"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"xiaohong"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"xiaoming"</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZREVRANGE myset <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span> withscores
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaowang"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"300"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"xiaohong"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"200"</span>
+<span class="token number">5</span><span class="token punctuation">)</span> <span class="token string">"xiaoming"</span>
+<span class="token number">6</span><span class="token punctuation">)</span> <span class="token string">"100"</span>
 
-127.0.0.1:6379&gt; ZRANGEBYSCORE myset -inf 200 withscores #显示小于等于200全部的用户，从小到大并附带值
-1) "xiaoming"
-2) "100"
-3) "xiaohong"
-4) "200"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZRANGEBYSCORE myset <span class="token operator">-</span>inf <span class="token number">200</span> withscores #显示小于等于<span class="token number">200</span>全部的用户，从小到大并附带值
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"xiaoming"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"100"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"xiaohong"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"200"</span>
 
 </code></pre>
 <h1 id="4-三种特殊数据类型"><a href="#4-三种特殊数据类型" class="headerlink" title="4.三种特殊数据类型"></a>4.三种特殊数据类型</h1><h2 id="4-1geospatial-地理位置"><a href="#4-1geospatial-地理位置" class="headerlink" title="4.1geospatial 地理位置"></a>4.1geospatial 地理位置</h2><p>GEOADD</p>
-<pre><code>#getadd 添加地理位置
+<pre class=" language-java"><code class="language-java">#getadd 添加地理位置
 #规则：两级无法直接添加
-#有效的经度从-180度到180度
-#有效的纬度从-85.05112878度到85.05112878
+#有效的经度从<span class="token operator">-</span><span class="token number">180</span>度到<span class="token number">180</span>度
+#有效的纬度从<span class="token operator">-</span><span class="token number">85.05112878</span>度到<span class="token number">85.05112878</span>
 
-GEOADD china:city 116.40 39.90 beijing 121.47 31.23 shanghai
+GEOADD china<span class="token operator">:</span>city <span class="token number">116.40</span> <span class="token number">39.90</span> beijing <span class="token number">121.47</span> <span class="token number">31.23</span> shanghai
 </code></pre>
 <p>GEOPOS</p>
-<pre><code>127.0.0.1:6379&gt; GEOPOS china:city beijing #获取城市的经度和纬度
-1) 1) "116.39999896287918091"
-   2) "39.90000009167092543"
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GEOPOS china<span class="token operator">:</span>city beijing #获取城市的经度和纬度
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"116.39999896287918091"</span>
+   <span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"39.90000009167092543"</span>
 
 </code></pre>
 <p>GEODIST key member1 member2 [unit]</p>
 <blockquote>
 <p>返回两个给定位置之间的距离。<br>如果两个位置之间的其中一个不存在， 那么命令返回空值。<br>指定单位的参数 unit 必须是以下单位的其中一个：<br>m 表示单位为米。<br>km 表示单位为千米。<br>mi 表示单位为英里。<br>ft 表示单位为英尺。<br>如果用户没有显式地指定单位参数， 那么 GEODIST 默认使用米作为单位。<br>GEODIST 命令在计算距离时会假设地球为完美的球形， 在极限情况下， 这一假设最大会造成 0.5% 的误差。</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; GEODIST china:city beijing shanghai km
-"1067.3788"
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GEODIST china<span class="token operator">:</span>city beijing shanghai km
+<span class="token string">"1067.3788"</span>
 </code></pre>
-<p>GEORADIUS</p>
+<p>GEORADIUSjava</p>
 <blockquote>
 <p>key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count]<br>以给定的经纬度为中心， 返回键包含的位置元素当中， 与中心的距离不超过给定最大距离的所有位置元素。<br>范围可以使用以下其中一个单位：<br>m 表示单位为米。<br>km 表示单位为千米。<br>mi 表示单位为英里。<br>ft 表示单位为英尺。<br>在给定以下可选项时， 命令会返回额外的信息：<br>WITHDIST: 在返回位置元素的同时， 将位置元素与中心之间的距离也一并返回。 距离的单位和用户给定的范围单位保持一致。<br>WITHCOORD: 将位置元素的经度和维度也一并返回。<br>WITHHASH: 以 52 位有符号整数的形式， 返回位置元素经过原始 geohash 编码的有序集合分值。 这个选项主要用于底层应用或者调试， 实际中的作用并不大。<br>命令默认返回未排序的位置元素。 通过以下两个参数， 用户可以指定被返回位置元素的排序方式：<br>ASC: 根据中心的位置， 按照从近到远的方式返回位置元素。<br>DESC: 根据中心的位置， 按照从远到近的方式返回位置元素。<br>在默认情况下， GEORADIUS 命令会返回所有匹配的位置元素。 虽然用户可以使用 COUNT 选项去获取前 N 个匹配元素， 但是因为命令在内部可能会需要对所有被匹配的元素进行处理， 所以在对一个非常大的区域进行搜索时， 即使只使用 COUNT 选项去获取少量元素， 命令的执行速度也可能会非常慢。 但是从另一方面来说， 使用 COUNT 选项去减少需要返回的元素数量， 对于减少带宽来说仍然是非常有用的。</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; GEORADIUS china:city 110 30 5000 km  #以经纬度为110 30为中心查询5000km的城市
-1) "shanghai"
-2) "beijing"
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GEORADIUS china<span class="token operator">:</span>city <span class="token number">110</span> <span class="token number">30</span> <span class="token number">5000</span> km  #以经纬度为<span class="token number">110</span> <span class="token number">30</span>为中心查询5000km的城市
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"beijing"</span>
 
-127.0.0.1:6379&gt; GEORADIUS china:city 110 30 5000 km withdist #显示到中间距离的位置
-1) 1) "shanghai"
-   2) "1105.9098"
-2) 1) "beijing"
-   2) "1245.2858"
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> GEORADIUS china<span class="token operator">:</span>city <span class="token number">110</span> <span class="token number">30</span> <span class="token number">5000</span> km withdist #显示到中间距离的位置
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+   <span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"1105.9098"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"beijing"</span>
+   <span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"1245.2858"</span>
 
 </code></pre>
 <p>GEORADIUSBYMEMBER</p>
@@ -1143,44 +1143,44 @@ GEOADD china:city 116.40 39.90 beijing 121.47 31.23 shanghai
 <blockquote>
 <p>GEO底层的实现原理其实就是Zset！我们可以使用Zset命令操作geo</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; ZRANGE china:city 0 -1
-1) "shanghai"
-2) "beijing"
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> ZRANGE china<span class="token operator">:</span>city <span class="token number">0</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"shanghai"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"beijing"</span>
 </code></pre>
 <h2 id="4-2、Hyperloglog"><a href="#4-2、Hyperloglog" class="headerlink" title="4.2、Hyperloglog"></a>4.2、Hyperloglog</h2><blockquote>
 <p>简介<br>Redis2.8.9版本更新了Hyperloglog数据结构<br>Redis Hyperloglog基数统计的算法<br>优点：占用的内存是固定，2^6不同的元素的计数，只需要废12kb内存，如果从内存角度来比较的话Hyperloglog首选<br>网页的UV（一个人访问一个网站多次，但是还是算作一个人）<br>传统的方式，set保存用户的id，然后就可以统计set中的元素数量作为标准判断<br>这个方式如果保存大量的用户id，就会比较麻烦！我们目的是为了计数，而不是保存用户id<br>0.81%错误率！统计UV任务，可以忽略不计。</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; PFADD mykey a b c d e f  #创建第一组元素 mykey
-(integer) 1
-127.0.0.1:6379&gt; PFCOUNT mykey #统计mykey中元素的数量
-(integer) 6
-127.0.0.1:6379&gt; PFADD mykey1 b c d r j d #创建第二组元素 mykey1
-(integer) 1
-127.0.0.1:6379&gt; PFCOUNT mykey1
-(integer) 5
-127.0.0.1:6379&gt; PFMERGE mykey2 mykey mykey1 #合并两组mykey mykey1 =&gt; mykey2 并集
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> PFADD mykey a b c d e f  #创建第一组元素 <span class="token function">mykey</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> PFCOUNT mykey #统计mykey中元素的数量
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">6</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> PFADD mykey1 b c d r j d #创建第二组元素 <span class="token function">mykey1</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> PFCOUNT <span class="token function">mykey1</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">5</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> PFMERGE mykey2 mykey mykey1 #合并两组mykey mykey1 <span class="token operator">=</span><span class="token operator">></span> mykey2 并集
 OK
-127.0.0.1:6379&gt; PFCOUNT mykey2 #查看并集数量
-(integer) 8
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> PFCOUNT mykey2 #查看并集数量
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">8</span>
 
 </code></pre>
 <h2 id="4-3、Bitmap"><a href="#4-3、Bitmap" class="headerlink" title="4.3、Bitmap"></a>4.3、Bitmap</h2><blockquote>
 <p>位存储统计用户信息，活跃，不活跃，打卡，未打卡 两个状态的数据，都可以使用BitmapsBitmap位图，数据结构！都是二进制位来进行记录，就只有0和1两个状态</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; setbit sign 0 1  #第1天 打卡了
-(integer) 0
-127.0.0.1:6379&gt; setbit sign 1 1 #第2天 打卡了
-(integer) 0 
-127.0.0.1:6379&gt; setbit sign 2 0 #第3天 没打卡
-(integer) 0
-127.0.0.1:6379&gt; setbit sign 3 0
-(integer) 0
-127.0.0.1:6379&gt; setbit sign 4 1
-(integer) 0
-127.0.0.1:6379&gt; getbit sign 0  #获取某一天是否打卡
-(integer) 1
-127.0.0.1:6379&gt; BITCOUNT sign 0 4  #第一天到第五天共计打卡几次
-(integer) 3
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setbit sign <span class="token number">0</span> <span class="token number">1</span>  #第<span class="token number">1</span>天 打卡了
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setbit sign <span class="token number">1</span> <span class="token number">1</span> #第<span class="token number">2</span>天 打卡了
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span> 
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setbit sign <span class="token number">2</span> <span class="token number">0</span> #第<span class="token number">3</span>天 没打卡
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setbit sign <span class="token number">3</span> <span class="token function">0</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> setbit sign <span class="token number">4</span> <span class="token function">1</span>
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> getbit sign <span class="token number">0</span>  #获取某一天是否打卡
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> BITCOUNT sign <span class="token number">0</span> <span class="token number">4</span>  #第一天到第五天共计打卡几次
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
 </code></pre>
 <h1 id="5-事务"><a href="#5-事务" class="headerlink" title="5.事务"></a>5.事务</h1><p>Redis事务本质：一组命令的集合！一个事务中的所有命令都会被序列化，在事务执行过程中，会按照顺序执行！一次性、顺序性、排他性！执行一系列的命令<br><code>-----------------队列 set set set 执行 </code></p>
 <p>Redis事务没有隔离级别的概念！<br>所有的命令在事务中，并没有被直接执行！只有发起执行命令的时候才会执行！Exec<br>Redis单条命令是保持原子性的，但是事务不保证原子性！</p>
@@ -1193,64 +1193,64 @@ OK
 <blockquote>
 <p>正常执行事务</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; MULTI  #开启事务
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> MULTI  #开启事务
 OK
-127.0.0.1:6379&gt; set k1 v1  #命令入队
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k1 v1  #命令入队
 QUEUED
-127.0.0.1:6379&gt; set k2 v2
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k2 v2
 QUEUED
-127.0.0.1:6379&gt; set k3 v3
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k3 v3
 QUEUED
-127.0.0.1:6379&gt; EXEC #执行事务
-1) OK
-2) OK
-3) OK
-127.0.0.1:6379&gt;
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> EXEC #执行事务
+<span class="token number">1</span><span class="token punctuation">)</span> OK
+<span class="token number">2</span><span class="token punctuation">)</span> OK
+<span class="token number">3</span><span class="token punctuation">)</span> OK
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span>
 </code></pre>
 <blockquote>
 <p>放弃事务</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; MULTI
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> MULTI
 OK
-127.0.0.1:6379&gt; set k1 v1
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k1 v1
 QUEUED
-127.0.0.1:6379&gt; set k4 v4
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k4 v4
 QUEUED
-127.0.0.1:6379&gt; DISCARD  #放弃事务
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> DISCARD  #放弃事务
 OK
 </code></pre>
 <blockquote>
 <p>编译型异常（代码有问题！命令有错），事务中所有的命令都不会被执行</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; MULTI
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> MULTI
 OK
-127.0.0.1:6379&gt; set k1 v1
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k1 v1
 QUEUED
-127.0.0.1:6379&gt; set k2 v2
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k2 v2
 QUEUED
-127.0.0.1:6379&gt; getset k3  #错误的命令
-(error) ERR wrong number of arguments for 'getset' command
-127.0.0.1:6379&gt; set k4 v4
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> getset k3  #错误的命令
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR wrong number of arguments <span class="token keyword">for</span> <span class="token string">'getset'</span> command
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k4 v4
 QUEUED
-127.0.0.1:6379&gt; EXEC
-(error) EXECABORT Transaction discarded because of previous errors.
-127.0.0.1:6379&gt; get k1  #所有的命令都不会被执行
-(nil)
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> <span class="token function">EXEC</span>
+<span class="token punctuation">(</span>error<span class="token punctuation">)</span> EXECABORT Transaction discarded because of previous errors<span class="token punctuation">.</span>
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> get k1  #所有的命令都不会被执行
+<span class="token punctuation">(</span>nil<span class="token punctuation">)</span>
 </code></pre>
 <blockquote>
 <p>运行时异常（1/0），如果事务队列中存在语法性，那么执行命令的时候，其他命令是可以正常执行的，错误命令抛出异常</p>
 </blockquote>
-<pre><code>127.0.0.1:6379&gt; set k1 v1
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k1 v1
 OK
-127.0.0.1:6379&gt; MULTI
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> MULTI
 OK
-127.0.0.1:6379&gt; INCR k1 #会执行失败
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> INCR k1 #会执行失败
 QUEUED
-127.0.0.1:6379&gt; set k2 v2
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k2 v2
 QUEUED
-127.0.0.1:6379&gt; exec
-1) (error) ERR value is not an integer or out of range  #后续的命令可以正常执行
-2) OK
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> exec
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range  #后续的命令可以正常执行
+<span class="token number">2</span><span class="token punctuation">)</span> OK
 
 </code></pre>
 <blockquote>
@@ -1270,17 +1270,17 @@ QUEUED
 <p>Redis监视测试</p>
 </blockquote>
 <p>正常执行成功</p>
-<pre><code>127.0.0.1:6379&gt; set k1 v1
+<pre class=" language-java"><code class="language-java"><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k1 v1
 OK
-127.0.0.1:6379&gt; MULTI
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> MULTI
 OK
-127.0.0.1:6379&gt; INCR k1
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> INCR k1
 QUEUED
-127.0.0.1:6379&gt; set k2 v2
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> set k2 v2
 QUEUED
-127.0.0.1:6379&gt; exec
-1) (error) ERR value is not an integer or out of range
-2) OK
+<span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> exec
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> ERR value is not an integer or out of range
+<span class="token number">2</span><span class="token punctuation">)</span> OK
 
 </code></pre>
 <p>测试多线程修改值，使用watch可以当作redis的乐观锁操作<br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210327152307821.png" alt="image"><br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210327152413256.png" alt="image"><br>解除监控，unwatch<br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210327152933111.png" alt="image"></p>
@@ -1292,76 +1292,76 @@ QUEUED
 <p>测试</p>
 </blockquote>
 <p>1.导入对应的依赖</p>
-<pre><code>&lt;!--导入jedis包--&gt;
-        &lt;!-- https://mvnrepository.com/artifact/redis.clients/jedis --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;redis.clients&lt;/groupId&gt;
-            &lt;artifactId&gt;jedis&lt;/artifactId&gt;
-            &lt;version&gt;3.2.0&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
-            &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
-            &lt;version&gt;1.2.62&lt;/version&gt;
-        &lt;/dependency&gt;
+<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>导入jedis包<span class="token operator">--</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>mvnrepository<span class="token punctuation">.</span>com<span class="token operator">/</span>artifact<span class="token operator">/</span>redis<span class="token punctuation">.</span>clients<span class="token operator">/</span>jedis <span class="token operator">--</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+            <span class="token operator">&lt;</span>groupId<span class="token operator">></span>redis<span class="token punctuation">.</span>clients<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>jedis<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>version<span class="token operator">></span><span class="token number">3.2</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
+        <span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+            <span class="token operator">&lt;</span>groupId<span class="token operator">></span>com<span class="token punctuation">.</span>alibaba<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>fastjson<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>version<span class="token operator">></span><span class="token number">1.2</span><span class="token punctuation">.</span><span class="token number">62</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
 </code></pre>
 <p>2.编码测试</p>
 <blockquote>
 <p>如果需要连接远程redis服务，不连接本地redis服务<br>一：修改配置文件 redis.conf<br>1.注掉bing 127.0.0.1<br>2.设置访问redis的密码 requirepass 密码<br>3.重启redis服务<br>4.使用密码登录 redis-cli redis配置文件 -h 127.0.0.1 -p 6379 -a 密码<br>二：关掉防火墙：systemctl stop firewalld<br>#注意防火墙每次重启服务器都会自动开放，为了安全不建议移除自启动，移除防火墙自启动systemctl disable firewalld<br>或者可以开放防火墙端口：<br>firewall-cmd –permanent –add-port=6379/tcp<br>firewall-cmd –reload<br>三：idea连接时增加<br>jedis.auth(“123”);//123为配置文件中设置的密码</p>
 </blockquote>
-<pre><code>public class TestPing {
-    public static void main(String[] args) {
-        Jedis jedis = new Jedis("192.168.1.101", 6379);
-        jedis.auth("123");
-        System.out.println(jedis.ping());
-    }
-}
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestPing</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Jedis jedis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jedis</span><span class="token punctuation">(</span><span class="token string">"192.168.1.101"</span><span class="token punctuation">,</span> <span class="token number">6379</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jedis<span class="token punctuation">.</span><span class="token function">auth</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>jedis<span class="token punctuation">.</span><span class="token function">ping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h1 id="7、SpringBoot整合"><a href="#7、SpringBoot整合" class="headerlink" title="7、SpringBoot整合"></a>7、SpringBoot整合</h1><p>SpringBoot操作数据：spring-data jpa jdbc mongodb redis!SpringData 也是和SpringBoot齐名的项目说明：在SpringBoot2.x之后，原来使用的jedis被替换为了lettuce</p>
 <blockquote>
 <p>为什么将jedis替换为lettuce？<br>jedis：采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全的，使用jedis pool连接池！更像BIO模式<br>lettuce：采用netty，实例可以在多个线程中进行共享，不存在线程不安全的情况！可以减少线程数据了，更像NIO模式</p>
 </blockquote>
 <p>源码分析：</p>
-<pre><code>@Configuration(proxyBeanMethods = false)
-@ConditionalOnClass(RedisOperations.class)
-@EnableConfigurationProperties(RedisProperties.class)
-@Import({ LettuceConnectionConfiguration.class, JedisConnectionConfiguration.class })
-public class RedisAutoConfiguration {
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span><span class="token punctuation">(</span>proxyBeanMethods <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@ConditionalOnClass</span><span class="token punctuation">(</span>RedisOperations<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span>RedisProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Import</span><span class="token punctuation">(</span><span class="token punctuation">{</span> LettuceConnectionConfiguration<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> JedisConnectionConfiguration<span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisAutoConfiguration</span> <span class="token punctuation">{</span>
 
-    @Bean
-    @ConditionalOnMissingBean(name = "redisTemplate")//我们可以自己定义一个
-    @ConditionalOnSingleCandidate(RedisConnectionFactory.class)
-    public RedisTemplate&lt;Object, Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        //默认的RedisTemplate没有过多的设置，redis对象都是需要序列化的
-        //两个泛型都是Object，Object的类型，我们使用后需要强制转换&lt;String,Object&gt;
-        RedisTemplate&lt;Object, Object&gt; template = new RedisTemplate&lt;&gt;();
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token annotation punctuation">@ConditionalOnMissingBean</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"redisTemplate"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//我们可以自己定义一个</span>
+    <span class="token annotation punctuation">@ConditionalOnSingleCandidate</span><span class="token punctuation">(</span>RedisConnectionFactory<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> RedisTemplate<span class="token operator">&lt;</span>Object<span class="token punctuation">,</span> Object<span class="token operator">></span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//默认的RedisTemplate没有过多的设置，redis对象都是需要序列化的</span>
+        <span class="token comment" spellcheck="true">//两个泛型都是Object，Object的类型，我们使用后需要强制转换&lt;String,Object></span>
+        RedisTemplate<span class="token operator">&lt;</span>Object<span class="token punctuation">,</span> Object<span class="token operator">></span> template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> template<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    @Bean
-    @ConditionalOnMissingBean
-    @ConditionalOnSingleCandidate(RedisConnectionFactory.class)
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        StringRedisTemplate template = new StringRedisTemplate();
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token annotation punctuation">@ConditionalOnMissingBean</span>
+    <span class="token annotation punctuation">@ConditionalOnSingleCandidate</span><span class="token punctuation">(</span>RedisConnectionFactory<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> StringRedisTemplate <span class="token function">stringRedisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        StringRedisTemplate template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> template<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-}
+<span class="token punctuation">}</span>
 </code></pre>
 <p>1、导入依赖</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
-&lt;/dependency&gt;
+<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+    <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+    <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>data<span class="token operator">-</span>redis<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
 </code></pre>
 <p>2、配置连接</p>
-<pre><code>spring:
-  redis:
-    host: 192.168.1.101
-    port: 6379
-    password: 123
+<pre class=" language-java"><code class="language-java">spring<span class="token operator">:</span>
+  redis<span class="token operator">:</span>
+    host<span class="token operator">:</span> <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">1.101</span>
+    port<span class="token operator">:</span> <span class="token number">6379</span>
+    password<span class="token operator">:</span> <span class="token number">123</span>
 </code></pre>
 <p>3.测试</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootTest</span>
@@ -1393,59 +1393,59 @@ public class RedisAutoConfiguration {
 <span class="token punctuation">}</span>
 </code></pre>
 <p><em>不序列化会报异常</em></p>
-<h2 id="7-1、自定义RedisTemplate"><a href="#7-1、自定义RedisTemplate" class="headerlink" title="7.1、自定义RedisTemplate"></a>7.1、自定义RedisTemplate</h2><pre><code>import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+<h2 id="7-1、自定义RedisTemplate"><a href="#7-1、自定义RedisTemplate" class="headerlink" title="7.1、自定义RedisTemplate"></a>7.1、自定义RedisTemplate</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>JsonAutoDetect<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>PropertyAccessor<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind<span class="token punctuation">.</span>ObjectMapper<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind<span class="token punctuation">.</span>jsontype<span class="token punctuation">.</span>impl<span class="token punctuation">.</span>LaissezFaireSubTypeValidator<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>connection<span class="token punctuation">.</span>RedisConnectionFactory<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>core<span class="token punctuation">.</span>RedisTemplate<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>serializer<span class="token punctuation">.</span>Jackson2JsonRedisSerializer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>redis<span class="token punctuation">.</span>serializer<span class="token punctuation">.</span>StringRedisSerializer<span class="token punctuation">;</span>
 
-@Configuration
-public class RedisConfig {
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisConfig</span> <span class="token punctuation">{</span>
 
-    @Bean
-    public RedisTemplate&lt;String, Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate&lt;String, Object&gt; template = new RedisTemplate&lt;String, Object&gt;();
-        template.setConnectionFactory(redisConnectionFactory);
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> <span class="token function">redisTemplate</span><span class="token punctuation">(</span>RedisConnectionFactory redisConnectionFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        RedisTemplate<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> template <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RedisTemplate</span><span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">setConnectionFactory</span><span class="token punctuation">(</span>redisConnectionFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        //Json序列化配置
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer&lt;&gt;(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        //String 的序列化
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        //key采用String的序列化方式
-        template.setKeySerializer(stringRedisSerializer);
-        //hash的key采用String的序列化方式
-        template.setHashKeySerializer(stringRedisSerializer);
-        //value序列化方式采用jackson
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        //hash的value序列化方式采用jackson
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
-        template.afterPropertiesSet();
+        <span class="token comment" spellcheck="true">//Json序列化配置</span>
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ObjectMapper om <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        om<span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span>PropertyAccessor<span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> JsonAutoDetect<span class="token punctuation">.</span>Visibility<span class="token punctuation">.</span>ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        om<span class="token punctuation">.</span><span class="token function">activateDefaultTyping</span><span class="token punctuation">(</span>LaissezFaireSubTypeValidator<span class="token punctuation">.</span>instance<span class="token punctuation">,</span> ObjectMapper<span class="token punctuation">.</span>DefaultTyping<span class="token punctuation">.</span>NON_FINAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jackson2JsonRedisSerializer<span class="token punctuation">.</span><span class="token function">setObjectMapper</span><span class="token punctuation">(</span>om<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//String 的序列化</span>
+        StringRedisSerializer stringRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//key采用String的序列化方式</span>
+        template<span class="token punctuation">.</span><span class="token function">setKeySerializer</span><span class="token punctuation">(</span>stringRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//hash的key采用String的序列化方式</span>
+        template<span class="token punctuation">.</span><span class="token function">setHashKeySerializer</span><span class="token punctuation">(</span>stringRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//value序列化方式采用jackson</span>
+        template<span class="token punctuation">.</span><span class="token function">setValueSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//hash的value序列化方式采用jackson</span>
+        template<span class="token punctuation">.</span><span class="token function">setHashValueSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        template<span class="token punctuation">.</span><span class="token function">afterPropertiesSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        return template;
-    }
+        <span class="token keyword">return</span> template<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-}
+<span class="token punctuation">}</span>
 </code></pre>
 <p>这样只要在实体中实现序列化，就不会有乱码问题了</p>
-<pre><code>import java.io.Serializable;
-@Component
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String name;
-    private int age;
-}
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2 id="7-1、自定义Redis工具类网上好多："><a href="#7-1、自定义Redis工具类网上好多：" class="headerlink" title="7.1、自定义Redis工具类网上好多："></a>7.1、自定义Redis工具类网上好多：</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ye17186/article/details/87934399">redis工具类</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40925189/article/details/109585667">redis工具类</a></p>
 <h1 id="8、Redis-conf详解"><a href="#8、Redis-conf详解" class="headerlink" title="8、Redis.conf详解"></a>8、Redis.conf详解</h1><h1 id="9、Redis"><a href="#9、Redis" class="headerlink" title="9、Redis"></a>9、Redis</h1><p>持久化RDB于AOF详情请见：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45416687/article/details/115283376">https://blog.csdn.net/weixin_45416687/article/details/115283376</a></p>
@@ -1483,46 +1483,46 @@ public class User implements Serializable {
 </blockquote>
 <h2 id="11-2、主从复制之复制原理"><a href="#11-2、主从复制之复制原理" class="headerlink" title="11.2、主从复制之复制原理"></a>11.2、主从复制之复制原理</h2><p>默认情况下，每台Redis服务器都是主节点<br>查看命令：INFO replication<br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210328200125258.png" alt="image"></p>
 <p>一主二从<br>配置从机，认老大，一主（79）二从（80、81）<br>1.通过命令配置</p>
-<pre><code>192.168.137.140:6380&gt; SLAVEOF 192.168.137.140 6379  #配置从机  SLAVEOF host port
+<pre class=" language-java"><code class="language-java"><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token operator">:</span><span class="token number">6380</span><span class="token operator">></span> SLAVEOF <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6379</span>  #配置从机  SLAVEOF host port
 OK
-192.168.137.140:6380&gt; info replication #查看
+<span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token operator">:</span><span class="token number">6380</span><span class="token operator">></span> info replication #查看
 # Replication
-role:slave #当前角色
-master_host:192.168.137.140  #查看主机的配置
-master_port:6379
-master_link_status:down
-master_last_io_seconds_ago:-1
-master_sync_in_progress:0
-slave_repl_offset:1
-master_link_down_since_seconds:1616933195
-slave_priority:100
-slave_read_only:1
-connected_slaves:0
-master_replid:60515091a402e7416c97cf7fc9d95b212f3b38a2
-master_replid2:0000000000000000000000000000000000000000
-master_repl_offset:0
-second_repl_offset:-1
-repl_backlog_active:0
-repl_backlog_size:1048576
-repl_backlog_first_byte_offset:0
-repl_backlog_histlen:0
+role<span class="token operator">:</span>slave #当前角色
+master_host<span class="token operator">:</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span>  #查看主机的配置
+master_port<span class="token operator">:</span><span class="token number">6379</span>
+master_link_status<span class="token operator">:</span>down
+master_last_io_seconds_ago<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span>
+master_sync_in_progress<span class="token operator">:</span><span class="token number">0</span>
+slave_repl_offset<span class="token operator">:</span><span class="token number">1</span>
+master_link_down_since_seconds<span class="token operator">:</span><span class="token number">1616933195</span>
+slave_priority<span class="token operator">:</span><span class="token number">100</span>
+slave_read_only<span class="token operator">:</span><span class="token number">1</span>
+connected_slaves<span class="token operator">:</span><span class="token number">0</span>
+master_replid<span class="token operator">:</span>60515091a402e7416c97cf7fc9d95b212f3b38a2
+master_replid2<span class="token operator">:</span><span class="token number">0000000000000000000000000000000000000000</span>
+master_repl_offset<span class="token operator">:</span><span class="token number">0</span>
+second_repl_offset<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span>
+repl_backlog_active<span class="token operator">:</span><span class="token number">0</span>
+repl_backlog_size<span class="token operator">:</span><span class="token number">1048576</span>
+repl_backlog_first_byte_offset<span class="token operator">:</span><span class="token number">0</span>
+repl_backlog_histlen<span class="token operator">:</span><span class="token number">0</span>
 
 ###############################################
 #配置完成后，也可以在主机上查看从机配置
-192.168.137.140:6379&gt; info replication
+<span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token operator">:</span><span class="token number">6379</span><span class="token operator">></span> info replication
 # Replication
-role:master
-connected_slaves:2 #已经连接两个从节点
-slave0:ip=192.168.137.140,port=6380,state=online,offset=84,lag=0
-slave1:ip=192.168.137.140,port=6381,state=online,offset=84,lag=0
-master_replid:3d553be66e2a6e5c19dbeb104fb224a3e093517d
-master_replid2:0000000000000000000000000000000000000000
-master_repl_offset:84
-second_repl_offset:-1
-repl_backlog_active:1
-repl_backlog_size:1048576
-repl_backlog_first_byte_offset:1
-repl_backlog_histlen:84
+role<span class="token operator">:</span>master
+connected_slaves<span class="token operator">:</span><span class="token number">2</span> #已经连接两个从节点
+slave0<span class="token operator">:</span>ip<span class="token operator">=</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token punctuation">,</span>port<span class="token operator">=</span><span class="token number">6380</span><span class="token punctuation">,</span>state<span class="token operator">=</span>online<span class="token punctuation">,</span>offset<span class="token operator">=</span><span class="token number">84</span><span class="token punctuation">,</span>lag<span class="token operator">=</span><span class="token number">0</span>
+slave1<span class="token operator">:</span>ip<span class="token operator">=</span><span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token punctuation">,</span>port<span class="token operator">=</span><span class="token number">6381</span><span class="token punctuation">,</span>state<span class="token operator">=</span>online<span class="token punctuation">,</span>offset<span class="token operator">=</span><span class="token number">84</span><span class="token punctuation">,</span>lag<span class="token operator">=</span><span class="token number">0</span>
+master_replid<span class="token operator">:</span>3d553be66e2a6e5c19dbeb104fb224a3e093517d
+master_replid2<span class="token operator">:</span><span class="token number">0000000000000000000000000000000000000000</span>
+master_repl_offset<span class="token operator">:</span><span class="token number">84</span>
+second_repl_offset<span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span>
+repl_backlog_active<span class="token operator">:</span><span class="token number">1</span>
+repl_backlog_size<span class="token operator">:</span><span class="token number">1048576</span>
+repl_backlog_first_byte_offset<span class="token operator">:</span><span class="token number">1</span>
+repl_backlog_histlen<span class="token operator">:</span><span class="token number">84</span>
 
 
 </code></pre>
@@ -1561,45 +1561,45 @@ repl_backlog_histlen:84
 <p>测试</p>
 </blockquote>
 <p>我们目前的状态是一主二从<br>1、配置哨兵配置文件 sentinel.conf</p>
-<pre><code>vim sentinel.conf
-# sentinel monitor 被监控的主机名称 host port 1
-sentinel monitor myredis 192.168.137.140 6379 1
-#后面这个数字1，代表主机挂了，slave投票让谁接替成为主机，票数最多的，就会成为主机
+<pre class=" language-java"><code class="language-java">vim sentinel<span class="token punctuation">.</span>conf
+# sentinel monitor 被监控的主机名称 host port <span class="token number">1</span>
+sentinel monitor myredis <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6379</span> <span class="token number">1</span>
+#后面这个数字<span class="token number">1</span>，代表主机挂了，slave投票让谁接替成为主机，票数最多的，就会成为主机
 #有密码的需要在配置文件中增加
-sentinel auth-pass &lt;master-name&gt; &lt;password&gt;
+sentinel auth<span class="token operator">-</span>pass <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>password<span class="token operator">></span>
 </code></pre>
 <p><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/2021032821275945.png" alt="image"></p>
 <p>2、启动哨兵</p>
-<pre><code>
-# redis-sentinel sentinel的配置文件
-[root@localhost bin]# redis-sentinel redisconfig/sentinel.conf 
-20858:X 28 Mar 2021 21:28:22.566 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-20858:X 28 Mar 2021 21:28:22.566 # Redis version=5.0.12, bits=64, commit=00000000, modified=0, pid=20858, just started
-20858:X 28 Mar 2021 21:28:22.566 # Configuration loaded
-20858:X 28 Mar 2021 21:28:22.567 * Increased maximum number of open files to 10032 (it was originally set to 1024).
-                _._                                                  
-           _.-``__ ''-._                                             
-      _.-``    `.  `_.  ''-._           Redis 5.0.12 (00000000/0) 64 bit
-  .-`` .-```.  ```\/    _.,_ ''-._                                   
- (    '      ,       .-`  | `,    )     Running in sentinel mode
- |`-._`-...-` __...-.``-._|'` _.-'|     Port: 26379
- |    `-._   `._    /     _.-'    |     PID: 20858
-  `-._    `-._  `-./  _.-'    _.-'                                   
- |`-._`-._    `-.__.-'    _.-'_.-'|                                  
- |    `-._`-._        _.-'_.-'    |           http://redis.io        
-  `-._    `-._`-.__.-'_.-'    _.-'                                   
- |`-._`-._    `-.__.-'    _.-'_.-'|                                  
- |    `-._`-._        _.-'_.-'    |                                  
-  `-._    `-._`-.__.-'_.-'    _.-'                                   
-      `-._    `-.__.-'    _.-'                                       
-          `-._        _.-'                                           
-              `-.__.-'                                               
+<pre class=" language-java"><code class="language-java">
+# redis<span class="token operator">-</span>sentinel sentinel的配置文件
+<span class="token punctuation">[</span>root<span class="token annotation punctuation">@localhost</span> bin<span class="token punctuation">]</span># redis<span class="token operator">-</span>sentinel redisconfig<span class="token operator">/</span>sentinel<span class="token punctuation">.</span>conf 
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.566</span> # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.566</span> # Redis version<span class="token operator">=</span><span class="token number">5.0</span><span class="token punctuation">.</span><span class="token number">12</span><span class="token punctuation">,</span> bits<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> commit<span class="token operator">=</span><span class="token number">00000000</span><span class="token punctuation">,</span> modified<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> pid<span class="token operator">=</span><span class="token number">20858</span><span class="token punctuation">,</span> just started
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.566</span> # Configuration loaded
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.567</span> <span class="token operator">*</span> Increased maximum number of open files to <span class="token function">10032</span> <span class="token punctuation">(</span>it was originally set to <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
+                _<span class="token punctuation">.</span>_                                                  
+           _<span class="token punctuation">.</span>-``__ <span class="token string">''</span><span class="token operator">-</span><span class="token punctuation">.</span>_                                             
+      _<span class="token punctuation">.</span>-``    `<span class="token punctuation">.</span>  `_<span class="token punctuation">.</span>  <span class="token string">''</span><span class="token operator">-</span><span class="token punctuation">.</span>_           Redis <span class="token number">5.0</span><span class="token punctuation">.</span><span class="token function">12</span> <span class="token punctuation">(</span><span class="token number">00000000</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token number">64</span> bit
+  <span class="token punctuation">.</span>-`` <span class="token punctuation">.</span>-```<span class="token punctuation">.</span>  ```\<span class="token operator">/</span>    _<span class="token punctuation">.</span><span class="token punctuation">,</span>_ <span class="token string">''</span><span class="token operator">-</span><span class="token punctuation">.</span><span class="token function">_</span>                                   
+ <span class="token punctuation">(</span>    '      <span class="token punctuation">,</span>       <span class="token punctuation">.</span>-`  <span class="token operator">|</span> `<span class="token punctuation">,</span>    <span class="token punctuation">)</span>     Running in sentinel mode
+ <span class="token operator">|</span>`<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>-` __<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>-<span class="token punctuation">.</span>``<span class="token operator">-</span><span class="token punctuation">.</span>_<span class="token operator">|</span><span class="token string">'` _.-'</span><span class="token operator">|</span>     Port<span class="token operator">:</span> <span class="token number">26379</span>
+ <span class="token operator">|</span>    `<span class="token operator">-</span><span class="token punctuation">.</span>_   `<span class="token punctuation">.</span>_    <span class="token operator">/</span>     _<span class="token punctuation">.</span>-'    <span class="token operator">|</span>     PID<span class="token operator">:</span> <span class="token number">20858</span>
+  `<span class="token operator">-</span><span class="token punctuation">.</span>_    `<span class="token operator">-</span><span class="token punctuation">.</span>_  `<span class="token operator">-</span><span class="token punctuation">.</span>/  _<span class="token punctuation">.</span>-<span class="token string">'    _.-'</span>                                   
+ <span class="token operator">|</span>`<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span>_    `<span class="token operator">-</span><span class="token punctuation">.</span>__<span class="token punctuation">.</span>-<span class="token string">'    _.-'</span>_<span class="token punctuation">.</span>-'<span class="token operator">|</span>                                  
+ <span class="token operator">|</span>    `<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span>_        _<span class="token punctuation">.</span>-<span class="token string">'_.-'</span>    <span class="token operator">|</span>           http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>redis<span class="token punctuation">.</span>io        
+  `<span class="token operator">-</span><span class="token punctuation">.</span>_    `<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span>__<span class="token punctuation">.</span>-<span class="token string">'_.-'</span>    _<span class="token punctuation">.</span>-'                                   
+ <span class="token operator">|</span>`<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span>_    `<span class="token operator">-</span><span class="token punctuation">.</span>__<span class="token punctuation">.</span>-<span class="token string">'    _.-'</span>_<span class="token punctuation">.</span>-'<span class="token operator">|</span>                                  
+ <span class="token operator">|</span>    `<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span>_        _<span class="token punctuation">.</span>-<span class="token string">'_.-'</span>    <span class="token operator">|</span>                                  
+  `<span class="token operator">-</span><span class="token punctuation">.</span>_    `<span class="token operator">-</span><span class="token punctuation">.</span>_`<span class="token operator">-</span><span class="token punctuation">.</span>__<span class="token punctuation">.</span>-<span class="token string">'_.-'</span>    _<span class="token punctuation">.</span>-'                                   
+      `<span class="token operator">-</span><span class="token punctuation">.</span>_    `<span class="token operator">-</span><span class="token punctuation">.</span>__<span class="token punctuation">.</span>-<span class="token string">'    _.-'</span>                                       
+          `<span class="token operator">-</span><span class="token punctuation">.</span>_        _<span class="token punctuation">.</span>-'                                           
+              `<span class="token operator">-</span><span class="token punctuation">.</span>__<span class="token punctuation">.</span>-'                                               
 
-20858:X 28 Mar 2021 21:28:22.568 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
-20858:X 28 Mar 2021 21:28:22.569 # Sentinel ID is dc245ae88de15c20a29fba857c5f046c27fa6f44
-20858:X 28 Mar 2021 21:28:22.569 # +monitor master myredis 192.168.137.140 6379 quorum 1
-20858:X 28 Mar 2021 21:28:22.574 * +slave slave 192.168.137.140:6380 192.168.137.140 6380 @ myredis 192.168.137.140 6379
-20858:X 28 Mar 2021 21:28:22.575 * +slave slave 192.168.137.140:6381 192.168.137.140 6381 @ myredis 192.168.137.140 6379
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.568</span> # WARNING<span class="token operator">:</span> The TCP backlog setting of <span class="token number">511</span> cannot be enforced because <span class="token operator">/</span>proc<span class="token operator">/</span>sys<span class="token operator">/</span>net<span class="token operator">/</span>core<span class="token operator">/</span>somaxconn is set to the lower value of <span class="token number">128</span><span class="token punctuation">.</span>
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.569</span> # Sentinel ID is dc245ae88de15c20a29fba857c5f046c27fa6f44
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.569</span> # <span class="token operator">+</span>monitor master myredis <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6379</span> quorum <span class="token number">1</span>
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.574</span> <span class="token operator">*</span> <span class="token operator">+</span>slave slave <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token operator">:</span><span class="token number">6380</span> <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6380</span> @ myredis <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6379</span>
+<span class="token number">20858</span><span class="token operator">:</span>X <span class="token number">28</span> Mar <span class="token number">2021</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">28</span><span class="token operator">:</span><span class="token number">22.575</span> <span class="token operator">*</span> <span class="token operator">+</span>slave slave <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span><span class="token operator">:</span><span class="token number">6381</span> <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6381</span> @ myredis <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">137.140</span> <span class="token number">6379</span>
 
 </code></pre>
 <p>如果Master节点断开了，这个时候就会从从机中选出一个服务器成为主节点<br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210328213413384.png" alt="iamge"><br><img src="https://edu-2539.oss-cn-beijing.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210328213303718.png" alt="image"></p>
@@ -1608,75 +1608,75 @@ sentinel auth-pass &lt;master-name&gt; &lt;password&gt;
 <blockquote>
 <p>哨兵模式的全部配置sentinel.conf</p>
 </blockquote>
-<pre><code># Example sentinel.conf
+<pre class=" language-java"><code class="language-java"># Example sentinel<span class="token punctuation">.</span>conf
  
-# 哨兵sentinel实例运行的端口 默认26379
-port 26379
+# 哨兵sentinel实例运行的端口 默认<span class="token number">26379</span>
+port <span class="token number">26379</span>
  
 # 哨兵sentinel的工作目录
-dir /tmp
+dir <span class="token operator">/</span>tmp
  
 # 哨兵sentinel监控的redis主节点的 ip port 
-# master-name  可以自己命名的主节点名字 只能由字母A-z、数字0-9 、这三个字符".-_"组成。
+# master<span class="token operator">-</span>name  可以自己命名的主节点名字 只能由字母A<span class="token operator">-</span>z、数字<span class="token number">0</span><span class="token operator">-</span><span class="token number">9</span> 、这三个字符<span class="token string">".-_"</span>组成。
 # quorum 当这些quorum个数sentinel哨兵认为master主节点失联 那么这时 客观上认为主节点失联了
-# sentinel monitor &lt;master-name&gt; &lt;ip&gt; &lt;redis-port&gt; &lt;quorum&gt;
-sentinel monitor mymaster 127.0.0.1 6379 1
+# sentinel monitor <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>ip<span class="token operator">></span> <span class="token operator">&lt;</span>redis<span class="token operator">-</span>port<span class="token operator">></span> <span class="token operator">&lt;</span>quorum<span class="token operator">></span>
+sentinel monitor mymaster <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span> <span class="token number">6379</span> <span class="token number">1</span>
  
 # 当在Redis实例中开启了requirepass foobared 授权密码 这样所有连接Redis实例的客户端都要提供密码
 # 设置哨兵sentinel 连接主从的密码 注意必须为主从设置一样的验证密码
-# sentinel auth-pass &lt;master-name&gt; &lt;password&gt;
-sentinel auth-pass mymaster 123
+# sentinel auth<span class="token operator">-</span>pass <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>password<span class="token operator">></span>
+sentinel auth<span class="token operator">-</span>pass mymaster <span class="token number">123</span>
  
  
-# 指定多少毫秒之后 主节点没有应答哨兵sentinel 此时 哨兵主观上认为主节点下线 默认30秒
-# sentinel down-after-milliseconds &lt;master-name&gt; &lt;milliseconds&gt;
-sentinel down-after-milliseconds mymaster 30000
+# 指定多少毫秒之后 主节点没有应答哨兵sentinel 此时 哨兵主观上认为主节点下线 默认<span class="token number">30</span>秒
+# sentinel down<span class="token operator">-</span>after<span class="token operator">-</span>milliseconds <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>milliseconds<span class="token operator">></span>
+sentinel down<span class="token operator">-</span>after<span class="token operator">-</span>milliseconds mymaster <span class="token number">30000</span>
  
 # 这个配置项指定了在发生failover主备切换时最多可以有多少个slave同时对新的master进行 同步，
 这个数字越小，完成failover所需的时间就越长，
 但是如果这个数字越大，就意味着越 多的slave因为replication而不可用。
-可以通过将这个值设为 1 来保证每次只有一个slave 处于不能处理命令请求的状态。
-# sentinel parallel-syncs &lt;master-name&gt; &lt;numslaves&gt;
-sentinel parallel-syncs mymaster 1
+可以通过将这个值设为 <span class="token number">1</span> 来保证每次只有一个slave 处于不能处理命令请求的状态。
+# sentinel parallel<span class="token operator">-</span>syncs <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>numslaves<span class="token operator">></span>
+sentinel parallel<span class="token operator">-</span>syncs mymaster <span class="token number">1</span>
  
  
  
-# 故障转移的超时时间 failover-timeout 可以用在以下这些方面： 
-#1. 同一个sentinel对同一个master两次failover之间的间隔时间。
-#2. 当一个slave从一个错误的master那里同步数据开始计算时间。直到slave被纠正为向正确的master那里同步数据时。
-#3.当想要取消一个正在进行的failover所需要的时间。  
-#4.当进行failover时，配置所有slaves指向新的master所需的最大时间。不过，即使过了这个超时，slaves依然会被正确配置为指向master，但是就不按parallel-syncs所配置的规则来了
+# 故障转移的超时时间 failover<span class="token operator">-</span>timeout 可以用在以下这些方面： 
+#<span class="token number">1</span><span class="token punctuation">.</span> 同一个sentinel对同一个master两次failover之间的间隔时间。
+#<span class="token number">2</span><span class="token punctuation">.</span> 当一个slave从一个错误的master那里同步数据开始计算时间。直到slave被纠正为向正确的master那里同步数据时。
+#<span class="token number">3</span><span class="token punctuation">.</span>当想要取消一个正在进行的failover所需要的时间。  
+#<span class="token number">4</span><span class="token punctuation">.</span>当进行failover时，配置所有slaves指向新的master所需的最大时间。不过，即使过了这个超时，slaves依然会被正确配置为指向master，但是就不按parallel<span class="token operator">-</span>syncs所配置的规则来了
 # 默认三分钟
-# sentinel failover-timeout &lt;master-name&gt; &lt;milliseconds&gt;
-sentinel failover-timeout mymaster 180000
+# sentinel failover<span class="token operator">-</span>timeout <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>milliseconds<span class="token operator">></span>
+sentinel failover<span class="token operator">-</span>timeout mymaster <span class="token number">180000</span>
  
 # SCRIPTS EXECUTION
  
 #配置当某一事件发生时所需要执行的脚本，可以通过脚本来通知管理员，例如当系统运行不正常时发邮件通知相关人员。
 #对于脚本的运行结果有以下规则：
-#若脚本执行后返回1，那么该脚本稍后将会被再次执行，重复次数目前默认为10
-#若脚本执行后返回2，或者比2更高的一个返回值，脚本将不会重复执行。
-#如果脚本在执行过程中由于收到系统中断信号被终止了，则同返回值为1时的行为相同。
+#若脚本执行后返回<span class="token number">1</span>，那么该脚本稍后将会被再次执行，重复次数目前默认为<span class="token number">10</span>
+#若脚本执行后返回<span class="token number">2</span>，或者比<span class="token number">2</span>更高的一个返回值，脚本将不会重复执行。
+#如果脚本在执行过程中由于收到系统中断信号被终止了，则同返回值为<span class="token number">1</span>时的行为相同。
 #一个脚本的最大执行时间为60s，如果超过这个时间，脚本将会被一个SIGKILL信号终止，之后重新执行。
  
-#通知型脚本:当sentinel有任何警告级别的事件发生时（比如说redis实例的主观失效和客观失效等等），将会去调用这个脚本，
+#通知型脚本<span class="token operator">:</span>当sentinel有任何警告级别的事件发生时（比如说redis实例的主观失效和客观失效等等），将会去调用这个脚本，
 #这时这个脚本应该通过邮件，SMS等方式去通知系统管理员关于系统不正常运行的信息。调用该脚本时，将传给脚本两个参数，
 #一个是事件的类型，
 #一个是事件的描述。
-#如果sentinel.conf配置文件中配置了这个脚本路径，那么必须保证这个脚本存在于这个路径，并且是可执行的，否则sentinel无法正常启动成功。
+#如果sentinel<span class="token punctuation">.</span>conf配置文件中配置了这个脚本路径，那么必须保证这个脚本存在于这个路径，并且是可执行的，否则sentinel无法正常启动成功。
 #通知脚本
-# sentinel notification-script &lt;master-name&gt; &lt;script-path&gt;
-  sentinel notification-script mymaster /var/redis/notify.sh
+# sentinel notification<span class="token operator">-</span>script <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>script<span class="token operator">-</span>path<span class="token operator">></span>
+  sentinel notification<span class="token operator">-</span>script mymaster <span class="token operator">/</span>var<span class="token operator">/</span>redis<span class="token operator">/</span>notify<span class="token punctuation">.</span>sh
  
 # 客户端重新配置主节点参数脚本
 # 当一个master由于failover而发生改变时，这个脚本将会被调用，通知相关的客户端关于master地址已经发生改变的信息。
-# 以下参数将会在调用脚本时传给脚本:
-# &lt;master-name&gt; &lt;role&gt; &lt;state&gt; &lt;from-ip&gt; &lt;from-port&gt; &lt;to-ip&gt; &lt;to-port&gt;
-# 目前&lt;state&gt;总是“failover”,
-# &lt;role&gt;是“leader”或者“observer”中的一个。 
-# 参数 from-ip, from-port, to-ip, to-port是用来和旧的master和新的master(即旧的slave)通信的
+# 以下参数将会在调用脚本时传给脚本<span class="token operator">:</span>
+# <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>role<span class="token operator">></span> <span class="token operator">&lt;</span>state<span class="token operator">></span> <span class="token operator">&lt;</span>from<span class="token operator">-</span>ip<span class="token operator">></span> <span class="token operator">&lt;</span>from<span class="token operator">-</span>port<span class="token operator">></span> <span class="token operator">&lt;</span>to<span class="token operator">-</span>ip<span class="token operator">></span> <span class="token operator">&lt;</span>to<span class="token operator">-</span>port<span class="token operator">></span>
+# 目前<span class="token operator">&lt;</span>state<span class="token operator">></span>总是“failover”<span class="token punctuation">,</span>
+# <span class="token operator">&lt;</span>role<span class="token operator">></span>是“leader”或者“observer”中的一个。 
+# 参数 from<span class="token operator">-</span>ip<span class="token punctuation">,</span> from<span class="token operator">-</span>port<span class="token punctuation">,</span> to<span class="token operator">-</span>ip<span class="token punctuation">,</span> to<span class="token operator">-</span>port是用来和旧的master和新的<span class="token function">master</span><span class="token punctuation">(</span>即旧的slave<span class="token punctuation">)</span>通信的
 # 这个脚本应该是通用的，能被多次调用，不是针对性的。
-# sentinel client-reconfig-script &lt;master-name&gt; &lt;script-path&gt;
+# sentinel client<span class="token operator">-</span>reconfig<span class="token operator">-</span>script <span class="token operator">&lt;</span>master<span class="token operator">-</span>name<span class="token operator">></span> <span class="token operator">&lt;</span>script<span class="token operator">-</span>path<span class="token operator">></span>
 </code></pre>
 <h1 id="13、Redis缓存穿透和雪崩"><a href="#13、Redis缓存穿透和雪崩" class="headerlink" title="13、Redis缓存穿透和雪崩"></a>13、Redis缓存穿透和雪崩</h1><p>Redis缓存的使用，极大的提升了应用程序的性能和效率，特别是数据查询方面。但同时，它也带来了一些问题。其中，最要害的问题就是数据一致性的问题，从严格意义上讲，这个问题无解，如果对数据的一致性要求很高，那么就不能使用缓存</p>
 <h2 id="13-1、Redis缓存穿透（查不到）"><a href="#13-1、Redis缓存穿透（查不到）" class="headerlink" title="13.1、Redis缓存穿透（查不到）"></a>13.1、Redis缓存穿透（查不到）</h2><blockquote>
@@ -2246,7 +2246,7 @@ sentinel failover-timeout mymaster 180000
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2021-2022</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">cc</a>
@@ -2255,7 +2255,7 @@ sentinel failover-timeout mymaster 180000
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.4k</span>
+                        class="white-color">20.9k</span>
             
             
             
